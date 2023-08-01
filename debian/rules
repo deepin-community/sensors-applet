@@ -1,4 +1,27 @@
 #!/usr/bin/make -f
 
+# prevent 'installed' schemas from being registered on the build machine
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL := 1
+
+# remove un-necessary dependencies
+export DEB_LDFLAGS_MAINT_APPEND := -Wl,--as-needed
+
+DEB_HOST_MULTIARCH := $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+# debhelper v9 sets both libdir and libexecdir to /usr/lib/{arch}. the
+# panel applet binary is installed to {libexecdir}/sensors-applet, but the
+# plugins are installed to {libdir}/sensors-applet/plugins. override libexecdir
+# to avoid this conflict.
+confflags += --libexecdir='$${prefix}/lib/$(DEB_HOST_MULTIARCH)/sensors-applet'
+
 %:
 	dh $@
+
+override_dh_autoreconf:
+	dh_autoreconf --as-needed ./autogen.sh -- --version
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(confflags)
+
+override_dh_makeshlibs:
+	dh_makeshlibs --exclude=/usr/lib/$(DEB_HOST_MULTIARCH)/sensors-applet/plugins/ -V'libsensors-applet-plugin0 (>> 3.0.0)'

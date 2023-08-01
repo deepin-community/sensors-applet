@@ -1,15 +1,78 @@
-Source: template-repository
-Section: unknown
+Source: sensors-applet
+Section: gnome
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Sam Morris <sam@robots.org.uk>
+Uploaders: Filippo Giunchedi <filippo@esaurito.net>
+Build-Depends:
+ debhelper (>= 11),
+ docbook-xml,
+ gnome-common,
+ intltool,
+ libatasmart-dev (>= 0.16) [linux-any],
+ libcairo2-dev (>= 1.0.4),
+ libdbus-glib-1-dev (>= 0.80),
+ libglib2.0-dev (>= 2.22.0),
+ libgnome-panel-dev (>= 3.36.0),
+ libgtk-3-dev (>= 3.4.0),
+ libnotify-dev (>= 0.7.0),
+ libsensors-dev,
+ libx11-dev,
+ libtool,
+ xsltproc,
+ yelp-tools
+Standards-Version: 3.7.3
+Homepage: http://sensors-applet.sourceforge.net/
 
-Package: template-repository
+Package: sensors-applet
 Architecture: any
+Depends: ${shlibs:Depends}, libsensors-applet-plugin0 (= ${binary:Version}), ${misc:Depends}
+Recommends: hddtemp
+Description: Display readings from hardware sensors in your Gnome panel
+ GNOME Sensors Applet is an applet for the GNOME panel that displays
+ readings from hardware sensors, including temperatures, fan speeds and
+ voltage readings.
+ .
+ It can gather data from the following sources:
+  * ACPI thermal zones, via the Linux kernel ACPI modules
+  * Linux kernel i2c modules
+  * lm-sensors (libsensors)
+  * Linux kernel i8k module (for Dell Inspiron Laptops)
+  * Linux kernel ibm-acpi module
+  * Linux kernel PowerPC modules therm_adt746x and therm_windtunnel
+  * Linux kernel iMac G5 Windfarm module
+  * hddtemp daemon for reading temperatures from S.M.A.R.T. equipped hard disks
+  * Linux kernel Omnibook module
+  * NVIDIA graphics cards (with separate sensors-applet-nvidia package)
+  * Linux kernel sonypi module (for Sony Vaio laptops)
+ .
+ Alarms can be set for each sensor to notify the user once a certain high or
+ low value has been reached, and can be configured to execute a given command
+ at given repeated intervals.
+
+Package: libsensors-applet-plugin0
+Architecture: any
+Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Breaks: sensors-applet (<< 3.0.0)
+Description: Library for plugins for the 'sensors-applet' package
+ GNOME Sensors Applet is an applet for the GNOME panel that displays
+ readings from hardware sensors, including temperatures, fan speeds and
+ voltage readings.
+ .
+ This package contains the library that is used to create plugins for
+ the applet.
+
+Package: libsensors-applet-plugin-dev
+Architecture: any
+Section: libdevel
+Depends: libsensors-applet-plugin0 (= ${binary:Version}),
+# according to "-DEV package dependencies" in <http://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html#id291957>:
+ libglib2.0-dev,
+ ${shlibs:Depends}, ${misc:Depends}
+Description: Create plugins for the 'sensors-applet' package
+ GNOME Sensors Applet is an applet for the GNOME panel that displays
+ readings from hardware sensors, including temperatures, fan speeds and
+ voltage readings.
+ .
+ This package contains the files necessary to develop plugins for the
+ applet.

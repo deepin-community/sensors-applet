@@ -1,0 +1,14 @@
+<section>
+       <item>
+               <attribute name="label" translatable="yes">_Preferences</attribute>
+               <attribute name="action">sensorsapplet.preferences</attribute>
+       </item>
+       <item>
+               <attribute name="label" translatable="yes">_Help</attribute>
+               <attribute name="action">sensorsapplet.help</attribute>
+       </item>
+       <item>
+               <attribute name="label" translatable="yes">_About</attribute>
+               <attribute name="action">sensorsapplet.about</attribute>
+       </item>
+</section>

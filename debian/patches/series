@@ -1,0 +1,3 @@
+enable-deprecated.patch
+port-to-libgnome-panel.patch
+fix-crash-destroying-active-sensor.patch
