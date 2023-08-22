@@ -1,0 +1,2 @@
+b-dep on autotools, libtool
+b-conflict on bad autoconf

@@ -1,5 +1,538 @@
-template-repository (1.0-1) unstable; urgency=medium
+sensors-applet (3.0.0+git6-0.5) unstable; urgency=medium
 
-  * Initial release
+  * Non-maintainer upload.
+  * Install libsensors-applet.so in multi-arch location, for compatibility
+    with gnome-panel 3.38 (closes: #972277).
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 15 Oct 2020 20:44:32 +0300
+
+sensors-applet (3.0.0+git6-0.4) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Switch Build-Depends to libsensors-dev from libsensors4-dev (closes:
+    #917449).
+  * Port from libpanel-applet to libgnome-panel, based on upstream merge
+    request (closes: #960947).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 05 Jun 2020 13:18:41 +0300
+
+sensors-applet (3.0.0+git6-0.3) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Drop superfluous gnome-doc-utils build-dep (Closes: #945293)
+
+ -- Andreas Henriksson <andreas@fatal.se>  Fri, 07 Feb 2020 18:56:10 +0100
+
+sensors-applet (3.0.0+git6-0.2) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * Drop obsolete scrollkeeper build-dependency (Closes: #885611)
+  * Bump debhelper compat to 11
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 21 Oct 2018 22:17:01 -0400
+
+sensors-applet (3.0.0+git6-0.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * New snapshot from upstream Git repository (commit 07284262768e3a70).
+    - Ported to new documentation system (closes: #803059).
+    - Applet ported to in-process for compatibility with libpanel-applet2.
+  * Build-depend on yelp-tools.
+  * Bump libgtk-3-dev build-dependency to 3.4.0, following configure.ac.
+  * Update debian/sensors-applet.install for the in-process switch.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 24 Oct 2016 13:07:40 +0300
+
+sensors-applet (3.0.0+git5-0.1) unstable; urgency=medium
+
+  * Non-maintainer upload, with maintainer's permission.
+  * New snapshot from upstream Git repository.
+    - The only change is port to libpanel-applet, which closes: #772620.
+  * Build-depend on libpanel-applet-dev instead of libpanel-applet-4-dev.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 24 Jun 2015 20:36:00 +0300
+
+sensors-applet (3.0.0+git4-4) unstable; urgency=medium
+
+  * enable-deprecated.patch: avoid removing AC_SUBST(CFLAGS).
+
+ -- Sam Morris <sam@robots.org.uk>  Mon, 17 Mar 2014 19:36:59 +0000
+
+sensors-applet (3.0.0+git4-3) unstable; urgency=medium
+
+  * Re-enable deprecated GTK etc. features again. Closes: #741791.
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 16 Mar 2014 20:20:30 +0000
+
+sensors-applet (3.0.0+git4-2) unstable; urgency=low
+
+  * Re-enable -Wl,--as-needed; the dh-autoreconf optino enables support for
+    it, but doesn't actually cause it to be used.
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 13 Oct 2013 22:27:47 +0100
+
+sensors-applet (3.0.0+git4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop gtk-no-disable-deprecated.patch; upstream has adapted to the GTK+ 3.4
+    changes.
+  * Use upstream-provided autogen.sh in favour of running autoreconf directly
+    (takes care of running gettextize).
+  * Use --as-needed option to dh_autoreconf in favour of doing it ourselves.
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 13 Oct 2013 17:51:10 +0100
+
+sensors-applet (3.0.0-3) unstable; urgency=low
+
+  * Drop xmllint-nonet.patch: the modifications to gnome-doc-utils.make were
+    overwritten by autoreconf, but the build-dependency on scrollkeeper is
+    sufficient to cause xmllint to load the DTD from the local filesystem, so
+    it isn't necessary to alter the xmllint command line anyway.
+
+ -- Sam Morris <sam@robots.org.uk>  Tue, 02 Jul 2013 17:48:35 +0100
+
+sensors-applet (3.0.0-2) unstable; urgency=low
+
+  * Build-depend on gnome-common (provides macros used in configure.ac).
+
+ -- Sam Morris <sam@robots.org.uk>  Mon, 01 Jul 2013 21:05:14 +0100
+
+sensors-applet (3.0.0-1) unstable; urgency=low
+
+  * ACK previous NMUs, thanks for the help!
+  * gtk-no-disable-deprecated.patch: build without GTK_DISABLE_DEPRECATED,
+    necessary now that GtkTable has been deprecated. Closes: #713665.
+  * gtk-no-disable-deprecated.patch modifies configure.ac, so use
+    dh-autoreconf to manage autotools-generated files. Stop passing
+    --enable-maintainer-mode to configure.
+  * Bump debhelper compat to v9. Modify LDFLAGS in a way that supplements
+    flags now obtained from dpkg-buildflags.
+  * Rely on dh_auto_configure to pass --prefix, --host and --build to
+    configure. Continue to pass --libexecdir ourselves, since the
+    new behaviour in v9 causes a filename confliect.
+  * Remove obsolete XS-DM-Upload-Allowed field from debian/controls.
+
+ -- Sam Morris <sam@robots.org.uk>  Sat, 22 Jun 2013 20:37:40 +0100
+
+sensors-applet (3.0.0-0.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix "FTBFS: Could not parse DTD
+    http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-
+    1.0/scrollkeeper-omf.dtd": add patch to validate XML against local DTD,
+    build-depend on scrollkeeper for that.
+    (Closes: #652222)
+
+ -- gregor herrmann <gregoa@debian.org>  Tue, 14 Feb 2012 19:05:45 +0100
+
+sensors-applet (3.0.0-0.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream release, with support for GNOME3 Panel (closes: #638099).
+  * Drop link-to-libdl and libnotify_0.7_api_change patches, applied
+    upstream.
+  * Drop dh_autoreconf and all bootstrap friends from Build-Depends and
+    Build-Conflicts, not needed anymore.
+  * Update Build-Depends for the GTK+3 port, as per configure.ac.
+  * Drop .a and .la files (closes: #633257).
+  * Build-Depend on libsensors4 for kfreebsd again, as the package is now
+  * available on that architecture.
+  * Avoid hardcoding architecture names for libatamart-dev, and drop it
+    entirely for libsensors4, as all architectures should be supported,
+    even if the Hurd isn't available yet (closes: #634515).
+  * As libsensors-applet-plugin hasn't bumped its sonames but has at least
+    got an ABI break (due to the switch to GTK+3), and given there are no
+    external rdepends, avoid a library rename by bumping its shlibs and
+    adding Breaks: sensor-applets (<< 3.0.0).
+  * Change install path for the applet binary, and remove obsolete dirs.
+  * Tighten sensors-applet dependency on libsensors-applet-plugin to
+    (= ${binary:Version}), just in case.
+
+ -- Jordi Mallach <jordi@debian.org>  Sat, 05 Nov 2011 14:53:12 +0100
+
+sensors-applet (2.2.7-3.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix compatibility with libnotify0.7. Patch courtesy of Steve Langasek.
+    (Closes: #630301)
+
+ -- Jérémy Bobbio <lunar@debian.org>  Wed, 03 Aug 2011 14:16:58 +0200
+
+sensors-applet (2.2.7-3) unstable; urgency=low
+
+  * Use dh-autoreconf to regenerate build system at build time.
+  * Update to debhelper compat level 8; bump build-dependency accordingly.
+  * debian/*.install: remove debian/tmp prefix that has not been necessary
+    since debhelper 7.
+
+ -- Sam Morris <sam@robots.org.uk>  Sat, 26 Mar 2011 14:08:11 +0000
+
+sensors-applet (2.2.7-2) unstable; urgency=low
+
+  * Again, don't build-depend on libatasmart-dev for kfreebsd architectures.
+    Closes: #592489.
+
+ -- Sam Morris <sam@robots.org.uk>  Tue, 10 Aug 2010 22:20:53 +0100
+
+sensors-applet (2.2.7-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sam Morris <sam@robots.org.uk>  Sat, 17 Jul 2010 12:42:19 +0100
+
+sensors-applet (2.2.5-4) unstable; urgency=low
+
+  * Don't build-depend on libatasmart-dev on kfreebsd-{i386,amd64},
+    which is not yet available on those platforms.
+
+ -- Sam Morris <sam@robots.org.uk>  Fri, 02 Apr 2010 11:55:43 +0100
+
+sensors-applet (2.2.5-3) unstable; urgency=low
+
+  * Build-depend on docbook-xml and rarian-compat. Closes: #564397.
+  * Rebuild build system with gnome-autogen.sh rather than autoreconf.
+
+ -- Sam Morris <sam@robots.org.uk>  Sat, 09 Jan 2010 13:35:47 +0000
+
+sensors-applet (2.2.5-2) unstable; urgency=low
+
+  * Switch from CDBS to debhelper 7.
+  * Regenerate autotools-generated build system at build time. New
+    build deps:
+     - autoconf
+     - automake
+     - libtool
+     - gnome-common (for GNOME_COMPILE_WARNINGS macro)
+    Also conflict with old versions of autoconf/automake.
+
+ -- Sam Morris <sam@robots.org.uk>  Wed, 30 Dec 2009 14:41:15 +0000
+
+sensors-applet (2.2.5-1) unstable; urgency=low
+
+  * New upstream release. Closes: #562905.
+  * Increase required version of GTK+ and GLib build-dependencies.
+  * Introduce new dbus-glib and libatasmart build-dependencies.
+  * Remove obsolete patchutils build-dependency.
+
+ -- Sam Morris <sam@robots.org.uk>  Tue, 29 Dec 2009 00:59:36 +0000
+
+sensors-applet (2.2.4-2) unstable; urgency=low
+
+  * Convert to Debian source package format 3.0 (quilt).
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 22 Nov 2009 12:55:41 +0000
+
+sensors-applet (2.2.4-1) unstable; urgency=low
+
+  * New upstream release
+  * Added 100_link-to-libdl.patch. Fix FTBFS with binutils-gold.
+    Closes: #556342.
+  * Added 200_automake.patch. Previous patch modifies a Makefile.am, so this
+    is the result of re-running automake.
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 15 Nov 2009 14:42:42 +0000
+
+sensors-applet (2.2.3-2) unstable; urgency=low
+
+  * Make intltool build-dependency work. I don't know why the buildds and
+    pbuilder chose to ignore the dependency, or why tweaking the order makes
+    the build work again in pbuilder. Hopefully the same will apply to the
+    buildds. Hopefully closes: #519843.
+
+ -- Sam Morris <sam@robots.org.uk>  Sat, 21 Mar 2009 12:36:27 +0000
+
+sensors-applet (2.2.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 15 Mar 2009 11:48:10 +0000
+
+sensors-applet (2.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+    - This release introduces a new, modular architecture for sensor plugins
+      (closes: #434887).
+  * Split the package into sensors-applet. libsensors-applet-plugin0 and
+    libsensors-applet-plugin-dev.
+  * In preparation for the separate sensors-applet-nvidia package, explicitly
+    disable building the NVIDIA plugin.
+  * Minor tweaks to the package description.
+
+ -- Sam Morris <sam@robots.org.uk>  Sat, 05 Jan 2008 15:08:47 +0000
+
+sensors-applet (2.0.1-2) unstable; urgency=low
+
+  * DM-Upload_allowed is not recognised by dpkg-dev; prefix it by 'XS-'.
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 16 Dec 2007 12:47:59 +0000
+
+sensors-applet (2.0.1-1) unstable; urgency=low
+
+  * New upstream release (closes: #455971).
+  * Add Homepage to control fields.
+  * Build-depend on libsensors4-dev.
+  * Split build-depends field over multiple lines to make the output of
+    diff more useful.
+  * Update to policy version 3.7.3 (no changes).
+  * Add ${misc:Depends} to dependencies.
+  * Use new 'sf.net' style URL in watch file.
+  * Add DM-Upload-Allowed to control fields.
+
+ -- Sam Morris <sam@robots.org.uk>  Wed, 12 Dec 2007 23:32:08 +0000
+
+sensors-applet (1.8.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Icons are now licensed under the Creative Commons BY-SA 3.0 license, which
+    is suitable for Debian's main section (closes: #448029).
+  * debian/new-upstream script: no longer necessary, removed.
+  * debian/watch: call uupdate instead.
+  * debian/README.Debian: others have informed me that the procedure for
+    building with NVIDIA support works for them, so remove the text requesting
+    confirmation that it actually works.
+
+ -- Sam Morris <sam@robots.org.uk>  Fri, 26 Oct 2007 11:07:44 +0100
+
+sensors-applet (1.8.1+dfsg-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/new-upstream: wrote a python script to automate the job of
+    replacing the non-free artwork in upstream's tarball with the GPL-licensed
+    artwork from an older release.
+  * debian/watch: call this script when there is a new release available.
+  * Recommend hddtemp as requested in #431718).
+
+ -- Sam Morris <sam@robots.org.uk>  Thu, 05 Jul 2007 14:24:27 +0100
+
+sensors-applet (1.7.12+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 29 Apr 2007 00:31:53 +0100
+
+sensors-applet (1.7.11+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+  * Build-depend on patchutils since we are using CDBS' simple-patchsys rules.
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 15 Apr 2007 19:24:40 +0100
+
+sensors-applet (1.7.10+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+    - Should fix bug 'sensor height not saved on vertical panel'
+      (closes: #393937)
+
+ -- Sam Morris <sam@robots.org.uk>  Wed, 22 Nov 2006 12:59:40 +0000
+
+sensors-applet (1.7.9+dfsg-2) unstable; urgency=low
+
+  * Fix typo in package description (s/irc/i2c/)
+
+ -- Sam Morris <sam@robots.org.uk>  Sun,  5 Nov 2006 20:38:18 +0000
+
+sensors-applet (1.7.9+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+    - includes new Swedish translation (closes: #386140)
+  * Added some new features to the package description
+
+ -- Sam Morris <sam@robots.org.uk>  Sat,  4 Nov 2006 00:04:17 +0000
+
+sensors-applet (1.7.8+dfsg-2) unstable; urgency=low
+
+  * Add instructions to README.Debian explaining how to enable NVIDIA support
+    (closes: #375179)
+
+ -- Sam Morris <sam@robots.org.uk>  Wed, 18 Oct 2006 11:15:45 +0100
+
+sensors-applet (1.7.8+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sam Morris <sam@robots.org.uk>  Wed, 23 Aug 2006 01:10:54 +0100
+
+sensors-applet (1.7.7+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sam Morris <sam@robots.org.uk>  Sun, 20 Aug 2006 14:23:15 +0100
+
+sensors-applet (1.7.6+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sam Morris <sam@robots.org.uk>  Tue,  8 Aug 2006 01:16:11 +0100
+
+sensors-applet (1.7.5+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+    - Fix crashes (closes: #379361, #378694)
+    - Draw transparent panel background correctly (closes: #379360)
+    - Re-introduce multi-line sensor display (closes: #379668)
+  * Switch to debhelper compatibility level 5; depend on an appropriate
+    version of debhelper
+
+ -- Sam Morris <sam@robots.org.uk>  Mon, 24 Jul 2006 15:35:07 +0100
+
+sensors-applet (1.7.3+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+    - Draw graphs correctly when the applet is on a vertical panel
+      (closes: #378530)
+  * debian/watch: only download new uptream releases; do not automatically run
+    uupdate because we must manually remove the non-free artwork from the
+    pixmaps directory)
+
+ -- Sam Morris <sam@robots.org.uk>  Fri, 21 Jul 2006 10:15:10 +0100
+
+sensors-applet (1.7.2+dfsg-1) unstable; urgency=low
+
+  * Repack source to remove non-free icons (closes: #377804)
+  * Don't build on libsensors on kfreebsd-amd64 either
+
+ -- Sam Morris <sam@robots.org.uk>  Tue, 11 Jul 2006 13:45:38 +0100
+
+sensors-applet (1.7.2-1) unstable; urgency=low
+
+  * New upstream release
+  * Don't build-depend on libsensors on kfreebsd-i386, since it is a
+    Linux-specific package
+  * 100_fix_upgrade_crash.diff: removed, the applet itself now handles
+    upgrades more gracefully
+
+ -- Sam Morris <sam@robots.org.uk>  Wed,  5 Jul 2006 13:44:46 +0100
+
+sensors-applet (1.7.1-2) unstable; urgency=low
+
+  * 100_fix_upgrade_crash.diff: fix NULL pointer dereference (closes: #376502)
+
+ -- Sam Morris <sam@robots.org.uk>  Mon,  3 Jul 2006 21:34:03 +0100
+
+sensors-applet (1.7.1-1) unstable; urgency=low
+
+  * New upstream release
+  * No longer use CDBS' automatic debian/control file management
+  * Update versions of some build-dependencies, and add transitive
+    build-dependencies explicitly (to help with backporting)
+  * Link with --as-needed to cut down on unnecessary transitive dependencies
+
+ -- Sam Morris <sam@robots.org.uk>  Thu, 29 Jun 2006 15:03:41 +0100
+
+sensors-applet (1.6.2-1) unstable; urgency=low
+
+  * New upstream release
+    - report sensor reading in tooltip (closes: #366467)
+  * Update to policy 3.7.2; no changes
+
+ -- Sam Morris <sam@robots.org.uk>  Fri, 16 Jun 2006 01:48:31 +0100
+
+sensors-applet (1.6.1-1) unstable; urgency=low
+
+  * New upstream release
+    - use libsensors instead of reading directly from /sys (closes: #353899).
+  * Build-depend on libsensors-dev
+  * Add NEWS file describing how to upgrade
+
+ -- Sam Morris <sam@robots.org.uk>  Fri, 24 Mar 2006 16:25:34 +0000
+
+sensors-applet (1.6-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/sensors_old_pmu.diff: merged upstream
+  * debian/control: build-depend on gnome-doc-utils
+  * debian/rules: disable scrollkeeper
+  * debian/NEWS: remove, since it's only full of outdated information
+
+ -- Sam Morris <sam@robots.org.uk>  Wed,  4 Jan 2006 23:54:37 +0000
+
+sensors-applet (1.5.2-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/offset_finegrain.diff: merged upstream
+
+ -- Sam Morris <sam@robots.org.uk>  Sat, 29 Oct 2005 13:09:34 +0100
+
+sensors-applet (1.5-3) unstable; urgency=low
+
+  * debian/watch: added
+  * Bump standards version to 3.6.2 (no changes)
+
+ -- Sam Morris <sam@robots.org.uk>  Mon, 10 Oct 2005 17:30:57 +0100
+
+sensors-applet (1.5-2) unstable; urgency=low
+
+  * debian/patches/sensors_old_pmu: added; allows sensors-applet to use both
+    the old PMU sensors API, and the new one introduced in 2.6.12. Thanks
+    Filippo Giunchedi <filippo@esaurito.net>
+
+ -- Sam Morris <sam@robots.org.uk>  Mon,  3 Oct 2005 16:54:33 +0100
+
+sensors-applet (1.5-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/correct_icon_path.diff: merged upstream
+
+ -- Sam Morris <sam@robots.org.uk>  Sat,  1 Oct 2005 16:58:46 +0100
+
+sensors-applet (1.4a-4) unstable; urgency=low
+
+  * debian/rules: remove config.{guess,sub}.cdbs-orig cleanup commands
+
+ -- Sam Morris <sam@robots.org.uk>  Mon, 15 Aug 2005 02:55:34 +0100
+
+sensors-applet (1.4a-3) unstable; urgency=low
+
+  * Add Filippo Giunchedi (package sponsor) to Uploaders
+  * debian/rules: on clean, warn if debian/control is out of date
+
+ -- Sam Morris <sam@robots.org.uk>  Thu, 11 Aug 2005 13:16:47 +0100
+
+sensors-applet (1.4a-2) unstable; urgency=low
+
+  * Disable CDBS debian/control management
+  * Remove redundant CDBS-generated entries from build-depends
+
+ -- Sam Morris <sam@robots.org.uk>  Thu,  4 Aug 2005 01:28:58 +0100
+
+sensors-applet (1.4a-1) unstable; urgency=low
+
+  * New upstream release. Upstream didn't change the version number, so this
+    is version 1.4a.
+
+ -- Sam Morris <sam@robots.org.uk>  Mon, 25 Jul 2005 19:25:43 +0100
+
+sensors-applet (1.4-2) unstable; urgency=low
+
+  * Remove config.{guess,sub}.cdbs-orig cruft in clean
+  * correct_icon_path.diff: make the panel applet use the correct icon path
+  * offset_finegrain.diff: make multiplier value adjustments more granular
+  * First upload to unstable (closes: #308437)
+
+ -- Sam Morris <sam@robots.org.uk>  Mon, 25 Jul 2005 16:24:27 +0100
+
+sensors-applet (1.4-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sam Morris <sam@robots.org.uk>  Fri, 22 Jul 2005 02:37:32 +0100
+
+sensors-applet (1.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sam Morris <sam@robots.org.uk>  Thu,  7 Jul 2005 01:03:31 +0100
+
+sensors-applet (1.0-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/control: use CDBS auto management
+
+ -- Sam Morris <sam@robots.org.uk>  Thu, 30 Jun 2005 02:21:41 +0100
+
+sensors-applet (0.7.3-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Sam Morris <sam@robots.org.uk>  Fri, 17 Jun 2005 14:36:17 +0100
+

@@ -1,0 +1,24 @@
+sensors-applet (2.2.1-1) unstable; urgency=low
+
+  * sensors-applet now loads sensor plugin modules from separate shared object
+    files. Users of the NVIDIA plugin no longer have to rebuild the applet;
+    they can now install the (forthcoming) sensors-applet-nvidia package from
+    contrib.
+
+ -- Sam Morris <sam@robots.org.uk>  Sat, 05 Jan 2008 15:08:51 +0000
+
+sensors-applet (1.7.1-1) unstable; urgency=low
+
+  * The applet's configuration format changed again with this release, so you
+    must again remove the applet from your panels and add a new instance of
+    it.
+
+ -- Sam Morris <sam@robots.org.uk>  Wed, 28 Jun 2006 11:38:24 +0100
+
+sensors-applet (1.6.1-1) unstable; urgency=low
+
+  * sensors-applet now uses libsensors to detect sensors and obtain data from
+    them. After upgrading, you should remove the applet from your GNOME panel
+    and add it again; this will cause it to re-scan the system for sensors.
+
+ -- Sam Morris <sam@robots.org.uk>  Fri, 24 Mar 2006 16:27:53 +0000
