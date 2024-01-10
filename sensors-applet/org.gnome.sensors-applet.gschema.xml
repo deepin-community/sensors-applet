@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.sensors-applet">
+    <key type="b" name="setup">
+      <default>false</default>
+      <summary>Configuration in-place and active</summary>
+      <description>A flag indicating program has been configured.</description>
+    </key>
+    <key type="b" name="hide-units">
+      <default>false</default>
+      <summary>Hide temperature units</summary>
+      <description>Hide temperature units.</description>
+    </key>
+    <key type="i" name="font-size">
+      <default>10</default>
+      <summary>Size of the sensors text</summary>
+      <description>Sensors font size.</description>
+    </key>
+    <key type="i" name="timeout-delay">
+      <default>0</default>
+      <summary>Sensors info refresh time</summary>
+      <description>How often sensors info is retreived.</description>
+    </key>
+    <key type="i" name="display-mode">
+      <default>0</default>
+      <summary>Sensors display mode </summary>
+      <description>Icon/label sensors display.</description>
+    </key>
+    <key type="b" name="display-notifications">
+      <default>false</default>
+      <summary>Print sensors notifications</summary>
+      <description>Prints out notifications about sensors status or alerts.</description>
+    </key>
+    <key type="i" name="layout-mode">
+      <default>0</default>
+      <summary>Sensors layout mode</summary>
+      <description>Orientation of sensors label in regard to icons.</description>
+    </key>
+    <key type="i" name="temperature-scale">
+      <default>0</default>
+      <summary>Temperature scale</summary>
+      <description>For temperature related sensors sets the displaying of temperature.</description>
+    </key>
+    <key type="d" name="graph-size">
+      <default>0</default>
+      <summary>Graph width</summary>
+      <description>Width of the senors graph.</description>
+    </key>
+    <key type="b" name="libsensors">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="hddtemp">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="i8k">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="nvidia">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="pmu-sys">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="sonypi">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="udisks">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="eee">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="aticonfig">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="acpi">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="i2c-sys">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="ibm-acpi">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="omnibook">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="mbmon">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="smu-sys">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="b" name="i2c-proc">
+      <default>false</default>
+      <summary/>
+      <description/>
+    </key>
+    <key type="s" name="sensors-applet-version">
+      <default>""</default>
+      <summary>Version of the configuration</summary>
+      <description>Binds the config settings to the program version.</description>
+    </key>
+    <key type="a(ssssbddbssuuddus)" name="slist">
+      <default>[]</default>
+      <summary>Array holding sensors data</summary>
+      <description>Serialized data of the sensors info.</description>
+    </key>
+  </schema>
+</schemalist>
